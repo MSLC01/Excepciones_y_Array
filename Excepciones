@@ -1,0 +1,95 @@
+package excepciones;
+
+import javax.swing.JOptionPane;
+
+public class Excepciones {
+
+    public static void main(String[] args) {
+      menu();
+    }
+    public static void formatoNumero1(){
+    //excepción sin tratar 
+    int numero;   
+    String cadena="  1";   
+    numero = Integer.parseInt(cadena);  
+}
+   
+    public static void formatoNumero2(){
+
+    int numero;   
+    String cadena="  1";   
+ 	try{   
+    	    numero = Integer.parseInt(cadena);   
+ 	}   
+        catch(NumberFormatException ex){   
+            System.out.println("No es un número, es una cadena de texto."+ex.getMessage());   
+    
+ 	}
+    } 
+    public static void desborde(){
+ 
+    int v[]= new int[3];
+    try{
+    for(int i =0; i<5;i++){
+     v[i]=i;
+    }
+    }catch(ArrayIndexOutOfBoundsException ex){
+        System.out.println("el limite del vector es 3. "+ex.getMessage());
+    }
+    }
+    public static void aritmetico(){
+ 
+    int numero=5, resultado;
+
+    try{
+    resultado= numero/0;
+    }catch(ArithmeticException ex){
+        System.out.println("dividir entre cero no existe "+ex.getMessage());
+    }
+    }
+    public static void division(){
+        try{
+        int num1, num2, result;
+        num1 = Integer.parseInt(JOptionPane.showInputDialog("ingrese dividendo"));
+        if(num1 < 10){
+           throw new RuntimeException("el numero es menor a 10");
+        }
+        num2 = Integer.parseInt(JOptionPane.showInputDialog("ingrese divisor"));
+        try{
+        result = num1/num2;
+        JOptionPane.showMessageDialog(null, "el resultado es "+result);
+        }catch(ArithmeticException ex){
+            JOptionPane.showMessageDialog(null, "dividir entre cero no existe "+ex.getMessage());
+        }
+        }catch(NumberFormatException ex ){
+            JOptionPane.showMessageDialog(null, "los datos no son enteros "+ex.getMessage());
+        }
+        catch(RuntimeException ex){
+            JOptionPane.showMessageDialog(null,ex.getMessage());
+        }
+    }
+    public static void menu(){
+        int punto;
+        punto = Integer.parseInt(JOptionPane.showInputDialog("ingrese punto a resolver"));
+        switch(punto){
+            case 1:
+                JOptionPane.showMessageDialog(null, "es una excepción sin tratar ");
+                formatoNumero1();
+                break;
+            case 2:
+                formatoNumero2();
+                break;
+            case 3:
+                desborde();
+                break;
+            case 4:  
+                aritmetico();
+                break;
+            case 5:
+                division();
+                break;
+            default: JOptionPane.showMessageDialog(null, "el punto no existe");
+        }
+    }
+
+}
