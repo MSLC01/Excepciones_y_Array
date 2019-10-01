@@ -1,0 +1,37 @@
+package producto;
+import java.util.*;
+public class Mercado {
+    
+    public static void main(String[]args){
+        
+        Producto gaseosa = new Producto("gaseosas",6);
+        Producto paquetes = new Producto("paquetes",2);
+        Producto manzanas = new Producto("manzanas",5);
+        Producto lentejas = new Producto("lentejas",2);
+        Producto aceite = new Producto("aceite",2);
+        
+        ArrayList lista = new ArrayList();
+        
+        lista.add(gaseosa);
+        lista.add(paquetes);
+        lista.add(manzanas);
+        lista.add(lentejas);
+        lista.add(1, aceite);
+        lista.add(aceite);
+        
+        System.out.println("Lista de mercado con "+lista.size()+" productos");
+        
+        Collections.sort(lista, (Producto p1, Producto p2) -> p1.getNombre().compareTo(p2.getNombre())); 
+        
+        Iterator it2 = lista.iterator();
+        
+        while(it2.hasNext()){
+            Producto producto = (Producto)it2.next();
+            System.out.println(producto);
+        }
+        
+        lista.clear();
+        System.out.println("lista del mercado con "+lista.size()+" productos");
+    }
+    
+}
